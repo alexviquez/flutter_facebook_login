@@ -8,13 +8,12 @@ dependencies:
   flutter:
     sdk: flutter
   collection: ^1.0.0
-  permission_handler: ^4.3.0
+  permission_handler: ^5.0.1+1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 flutter:
   plugin:
     androidPackage: com.roughike.facebooklogin.facebooklogin
