@@ -68,11 +68,11 @@ class _MyAppState extends State<MyApp> {
 
 
   Future<void> requestPermission() async{
-    final handler = PermissionHandler();
-    final permission = PermissionGroup.storage;
-    final status = await handler.checkPermissionStatus(permission);
+    final handler = Permission;
+    final permission = Permission.storage;
+    final status = await Permission.storage.status;
     if (status == PermissionStatus.granted) return;
-    final statuses = await handler.requestPermissions([permission]);
+    final statuses = await Permission.storage.request();
   }
 
 
@@ -131,37 +131,37 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Plugin example app'),
+        appBar: AppBar(
+          title: Text('Plugin example app'),
         ),
-        body: new Center(
-          child: new Column(
+        body: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Text(_message),
-              new RaisedButton(
+              Text(_message),
+              ElevatedButton(
                 onPressed: _login,
-                child: new Text('Log in'),
+                child: Text('Log in'),
               ),
-              new RaisedButton(
+              ElevatedButton(
                 onPressed: _logOut,
-                child: new Text('Logout'),
+                child: Text('Logout'),
               ),
-              new RaisedButton(
+              ElevatedButton(
                 onPressed: _onShareFacebook,
-                child: new Text('ShareImageFacebook'),
+                child: Text('ShareImageFacebook'),
               ),
-              new RaisedButton(
+              ElevatedButton(
                 onPressed: _onShareonInstagram,
-                child: new Text('Share Instagram image'),
+                child: Text('Share Instagram image'),
               ),
-              new RaisedButton(
+               ElevatedButton(
                 onPressed: _logEvent,
-                child: new Text('Event singup press'),
+                child: Text('Event singup press'),
               ),
-              new RaisedButton(
+              ElevatedButton(
                 onPressed: () => _logSignUp(200),
-                child: new Text('Log Signup'),
+                child: Text('Log Signup'),
               ),
             ],
           ),
