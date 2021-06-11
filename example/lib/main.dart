@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
         final FacebookAccessToken accessToken = result.accessToken;
         _showMessage('''
          Logged in!
-         
          Token: ${accessToken.token}
          User id: ${accessToken.userId}
          Expires: ${accessToken.expires}
@@ -68,11 +67,9 @@ class _MyAppState extends State<MyApp> {
 
 
   Future<void> requestPermission() async{
-    final handler = PermissionHandler();
-    final permission = PermissionGroup.storage;
-    final status = await handler.checkPermissionStatus(permission);
+    final status = await Permission.storage.status;
     if (status == PermissionStatus.granted) return;
-    final statuses = await handler.requestPermissions([permission]);
+    final statuses = await Permission.storage.request();
   }
 
 
