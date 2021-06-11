@@ -67,9 +67,12 @@ class _MyAppState extends State<MyApp> {
 
 
   Future<void> requestPermission() async{
-    final status = await Permission.storage.status;
-    if (status == PermissionStatus.granted) return;
-    final statuses = await Permission.storage.request();
+    final handler = PermissionHandler();
+    final permission = PermissionGroup.storage;
+    final status = await handler.checkPermissionStatus(permission);
+    if (status == PermissionStatus.granted) return true;
+    final statuses = await handler.requestPermissions([permission]);
+    return (statuses[permission] == PermissionStatus.granted);
   }
 
 
